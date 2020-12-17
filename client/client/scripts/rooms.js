@@ -1,0 +1,5 @@
+var Rooms = {
+
+  lobby: 'lobby'
+
+};
