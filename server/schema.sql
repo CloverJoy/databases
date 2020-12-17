@@ -6,19 +6,19 @@ USE chat;
 
 
 CREATE TABLE users (
-  id int,
+  id int auto_increment,
   user varchar(140),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE rooms (
-  id int,
+  id int auto_increment,
   rommname varchar(140),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE messages (
-  id int,
+  id int auto_increment,
   usermessage varchar(140),
   createdAt date,
   room_id int,
