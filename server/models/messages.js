@@ -2,36 +2,33 @@ var db = require('../db');
 
 module.exports = {
   getAll: function (callback) {
-    var queryString = '';
-    var queryArguments = [];
-    db.query(queryString, queryArguments, (err) => {
+    var queryString = 'SELECT * FROM messages';
+    db.query(queryString, (err, data) => {
       if (err) {
-        throw (err);
+        callback(err);
       } else {
-
+        callback (null, data);
       }
     });
+    // createdAt: "2020-12-17T16:15:21.271Z"
+    // objectId: "vhNYmSqteV"
+    // roomname: "lobby"
+    // text: "Working?"
+    // updatedAt: "2020-12-17T16:15:21.271Z"
+    // username: "test"
 
-    // readAll: function (callback) {
-    //   return $.ajax({
-    //     url: this.url,
-    //     type: 'GET',
-    //     dataType: 'json',
-    //     success: callback
-    //   });
-    // },
-
-    // dbConnection.query(queryString, queryArgs, function(err) {
-    //   if (err) { throw err; }
-
-    //   // Now query the Node chat server and see if it returns
-    //   // the message we just inserted:
-    //   request('http://127.0.0.1:3000/classes/messages', function(error, response, body) {
-    //     var messageLog = JSON.parse(body);
-    //     expect(messageLog[0].text).to.equal('Men like you can never change!');
-    //     expect(messageLog[0].roomname).to.equal('main');
-    //     done();
-    //   });
   }, // a function which produces all the messages
-  create: function () {} // a function which can be used to insert a message into the database
+  create: function (usermessage, createdAt, roomName, userId, callback) {
+    var queryString = `INSERT INTO message (usermessage, createdAt, room_id, user_id) values ( ${params[1]}, ${params[2]}, ${params[3]}, ${params[0]} )`;
+    db.query(queryString, (err) => {
+      if (err) {
+        callback(err);
+      } else {
+        console.log('new message added to database!');
+      }
+
+    });
+  } // a function which can be used to insert a message into the database
 };
+//(params, callback)
+// value (?, (select id from users where username = ? limit 1), ?)';
